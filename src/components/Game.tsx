@@ -1,16 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import {
   BattleshipConfigurationOutput,
   generateBattleshipConfiguration,
 } from "../utils/generateBattleshipConfiguration";
-import Grid from "./Grid";
+import Grid, { Guesses } from "./Grid";
+import { gridSize } from "../utils/constants";
 
 type GuessFeedback = "" | "hit" | "miss" | "sink";
-type Guesses = {
-  misses: string[];
-  sinks: string[];
-  hits: string[];
-};
 
 export const Game = () => {
   const [coordinateInput, setCoordinateInput] = useState<string>("");
@@ -25,9 +21,9 @@ export const Game = () => {
     useState<BattleshipConfigurationOutput>(() =>
       generateBattleshipConfiguration()
     );
-  // console.log("GB", generatedBoats); // is successfully updated at each game but persists during one despite of re-renders
+  // console.log("GB", generatedBoats); // is successfully updated at each game while persisting during one despite of re-renders
 
-  // Flatten all ship coordinates into a single array
+  // Flattening all ship coordinates into a single array
   const allGeneratedBoatsCoordinates = generatedBoats.flatMap(
     (boat) => boat.coordinates
   );
@@ -59,7 +55,7 @@ export const Game = () => {
       }));
       setFeedback("miss");
     } else {
-      // Hit or sink scenario scenario
+      // Hit or sink scenario
       // Determining if the current hit + existing hits are completing any boat
       const sinkedBoat = generatedBoats.find((boat) => {
         if (!boat.coordinates.includes(coordinate)) return false;
@@ -81,7 +77,7 @@ export const Game = () => {
           sinks: [...prevGuesses.sinks, ...sinkedBoat.coordinates],
           hits: prevGuesses.hits.filter(
             (hit) => !sinkedBoat.coordinates.includes(hit)
-          ), // removing any hits for this boat so the corresponding coordinates are only counted as sink
+          ), // removing any hits for this boat so the corresponding coordinates are only counted as sinks
         }));
         setFeedback("sink");
         return;
@@ -137,7 +133,7 @@ export const Game = () => {
   return (
     <section>
       <h1>Battleships Game</h1>
-      <Grid gridSize={10} guesses={guesses} />
+      <Grid gridSize={gridSize} guesses={guesses} />
       <p>
         One battleship (5 squares) and 2 destroyers (4 squares) are hiding in
         this 10x10 grid. <br /> Try to sink them all in as few guesses as
@@ -152,7 +148,7 @@ export const Game = () => {
           type="text"
           value={coordinateInput}
           placeholder={"A1"}
-          onChange={(e) => setCoordinateInput(e.target.value.toUpperCase())} // already partly sanitize the input
+          onChange={(e) => setCoordinateInput(e.target.value.toUpperCase())} // already partly sanitizing the input
           style={{
             marginRight: "1rem",
             marginLeft: "1rem",

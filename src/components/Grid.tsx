@@ -1,13 +1,16 @@
 import { alphabet } from "../utils/constants";
 
+export type Guesses = {
+  misses: string[];
+  sinks: string[];
+  hits: string[];
+};
+
 type GridProps = {
   gridSize: number;
-  guesses: {
-    hits: string[];
-    misses: string[];
-    sinks: string[];
-  };
+  guesses: Guesses;
 };
+
 export const Grid = ({ gridSize, guesses }: GridProps) => {
   const letters = alphabet.slice(0, gridSize); // ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
   const numbers = Array.from({ length: gridSize });

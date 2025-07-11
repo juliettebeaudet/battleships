@@ -1,5 +1,14 @@
 export const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 
+export const gridSize = 10;
+
+// Defining the ships we need to place on the board
+export const ships = [
+  { name: "battleship", size: 5 },
+  { name: "destroyer1", size: 4 },
+  { name: "destroyer2", size: 4 },
+];
+
 // mocked ship configuration used during development
 // export const computedShips = [
 //   { name: "battleship", coordinates: ["A1", "A2", "A3", "A4", "A5"] },
