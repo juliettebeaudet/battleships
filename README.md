@@ -34,7 +34,7 @@ The game has not been hosted, so you will need to clone the repository, install 
 
 * Planning (full understanding of the game, structuring the project): 1h
 * Functionality (game grid creation, boats positioning, form validation and submission, resetting game, testing): 5h
-* Style: 1h
+* Style (supporting the functionality and feedbacks to user): 1h
 * Quality and documentation (files structuring, typing, naming, commenting for readability): 1h30
 
 Total: 8h30
@@ -51,7 +51,7 @@ I did benefit from a few autocomplete suggestions from Github CoPilot, which acc
 
 ### To go further
 
-The task was supposed to be completed in about 6 hours. My goal was to not overpass too much that expectation.
+The game was supposed to be completed in about 6 hours. My goal was to not overpass too much that expectation.
 Here is a list of improvements I would have implemented, had I dedicated more time to perfect the game:
 
 #### Code quality and performance
@@ -63,5 +63,5 @@ Here is a list of improvements I would have implemented, had I dedicated more ti
 * Animations to make the user experience more fluid and fun (eg: miss/hit/sink feedbacks, squares coloration, end of the game and resetting flow)
 * Improve input error messages and positioning
 * Make the grid clickable so the user can select the visual coordinate instead of having to enter it as a text input
-* Make settings available to the user: decision over the grid size and the ships in presence in order to variate difficulty
+* Make settings available to the user: decision over the grid and the ships sizes in order to variate difficulty
 * Deploy the code and host it on a domain name so anyone can play
